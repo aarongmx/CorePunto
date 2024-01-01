@@ -4,14 +4,10 @@ using CorePuntoVenta.Domain.Clientes.Models;
 using CorePuntoVenta.Domain.Direcciones.Models;
 using CorePuntoVenta.Domain.Empleados.Models;
 using CorePuntoVenta.Domain.Ordenes.Models;
+using CorePuntoVenta.Domain.Pagos.Models;
 using CorePuntoVenta.Domain.Productos.Models;
 using CorePuntoVenta.Domain.Sucursales.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Seeds
 {
@@ -33,6 +29,8 @@ namespace CorePuntoVenta.Seeds
 
             builder.Entity<Sucursal>().HasData(new Sucursal() { Id = 1, Nombre = "AZTECAS", DireccionId = 1 });
 
+            builder.Entity<MetodoPago>().HasData(new MetodoPago() { Id = 1, Nombre = "EFECTIVO" }, new MetodoPago() { Id = 2, Nombre= "TARJETA DE CRÉDITO/DEBITO"}, new MetodoPago() { Id = 3, Nombre = "CHEQUE" });
+
             builder.Entity<Caja>().HasData(new Caja() { Id = 1, EfectivoDisponible = 0, Hostname = "caja", Ip = "192.168.0.2", NumeroCaja = "1", SucursalId = 1 });
 
             builder.Entity<Empleado>().HasData(new Empleado() { Id = 1, Nombre = "Rogelio", ApellidoPaterno = "Hernandez", ApellidoMaterno = "López", SucursalId = 1 });
@@ -41,7 +39,7 @@ namespace CorePuntoVenta.Seeds
 
             builder.Entity<Producto>().HasData(new Producto() { Id = 1, Nombre = "POLLO ADOBADO", CategoriaId = 1 });
 
-            builder.Entity<EstatusOrden>().HasData(new EstatusOrden() { Id = 1, Nombre = "CREADA" }, new EstatusOrden() { Id = 2, Nombre = "PAGADA" });
+            builder.Entity<EstatusOrden>().HasData(new EstatusOrden() { Id = 1, Nombre = "CREADA" }, new EstatusOrden { Id = 2, Nombre = "PENDIENTE" }, new EstatusOrden() { Id = 3, Nombre = "PAGADA" });
 
             builder.Entity<Cliente>().HasData(new Cliente() { Id = 1, NombreComercial = "AARON", Rfc = "GOMA971007BD8", RazonSocial = "AARON", DireccionId = 1 });
 

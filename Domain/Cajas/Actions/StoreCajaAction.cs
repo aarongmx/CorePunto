@@ -1,25 +1,15 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
 using CorePuntoVenta.Domain.Cajas.Mappers;
 using CorePuntoVenta.Domain.Cajas.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Cajas.Actions
 {
-    public class StoreCajaAction
+    public class StoreCajaAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-        private readonly CajaMapper _mapper;
-
-        public StoreCajaAction(ApplicationDbContext context)
-        {
-            _context = context;
-            _mapper = new();
-        }
+        private readonly ApplicationDbContext _context = context;
+        private readonly CajaMapper _mapper = new();
 
         public Caja? Execute(CajaData cajaData)
         {

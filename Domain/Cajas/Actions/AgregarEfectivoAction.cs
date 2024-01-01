@@ -1,13 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
 using CorePuntoVenta.Domain.Cajas.Enums;
 using CorePuntoVenta.Domain.Cajas.Models;
-using Microsoft.EntityFrameworkCore;
-using NodaTime;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Cajas.Actions
 {
@@ -25,7 +18,7 @@ namespace CorePuntoVenta.Domain.Cajas.Actions
             using var transaction = _context.Database.BeginTransaction();
             try
             {
-                ItemCaja itemCaja = null;
+                ItemCaja? itemCaja = null;
                 var caja = _context.Cajas.Find(cajaId);
                 if (caja != null)
                 {

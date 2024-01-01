@@ -3,13 +3,6 @@ using CorePuntoVenta.Domain.Clientes.Models;
 using CorePuntoVenta.Domain.Direcciones.Actions;
 using CorePuntoVenta.Domain.Direcciones.Data;
 using CorePuntoVenta.Domain.Direcciones.Models;
-using NodaTime;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace CorePuntoVenta.Domain.Clientes.Actions
 {

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Configuracion.Models
 {
@@ -12,8 +7,10 @@ namespace CorePuntoVenta.Domain.Configuracion.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
 
+        [Column("impresora")]
         public string Impresora { get; set; }
     }
 }

@@ -1,12 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Pagos.Data;
 using CorePuntoVenta.Domain.Support.Actions;
-using CorePuntoVenta.Domain.Ventas.Data;
 using ESC_POS_USB_NET.Printer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Ventas.Actions
 {

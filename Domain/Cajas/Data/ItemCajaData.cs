@@ -1,12 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Enums;
 using CorePuntoVenta.Domain.Empleados.Data;
-using CorePuntoVenta.Domain.Empleados.Models;
 using CorePuntoVenta.Domain.Support.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Cajas.Data
 {

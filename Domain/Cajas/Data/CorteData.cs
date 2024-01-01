@@ -1,11 +1,4 @@
-﻿using CorePuntoVenta.Domain.Cajas.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CorePuntoVenta.Domain.Cajas.Data
+﻿namespace CorePuntoVenta.Domain.Cajas.Data
 {
     public class CorteData
     {

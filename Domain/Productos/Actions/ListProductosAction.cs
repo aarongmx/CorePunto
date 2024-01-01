@@ -1,11 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Productos.Data;
 using CorePuntoVenta.Domain.Productos.Mappers;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Productos.Actions
 {

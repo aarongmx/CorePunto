@@ -1,15 +1,7 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
 using CorePuntoVenta.Domain.Clientes.Models;
 using CorePuntoVenta.Domain.Empleados.Data;
-using CorePuntoVenta.Domain.Empleados.Models;
-using CorePuntoVenta.Domain.Ordenes.Models;
 using CorePuntoVenta.Domain.Support.Data;
-using NodaTime;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Ordenes.Data
 {
@@ -23,7 +15,7 @@ namespace CorePuntoVenta.Domain.Ordenes.Data
 
         public double Total { get; set; }
 
-        public ICollection<ItemOrdenData>? ItemsOrden { get; set; }
+        public ICollection<ItemOrdenData>? ItemsOrden { get; set; } = new List<ItemOrdenData>();
 
         public int ClienteId { get; set; }
 

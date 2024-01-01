@@ -1,17 +1,9 @@
-﻿using CorePuntoVenta.Domain.Ventas.Data;
-using CorePuntoVenta.Domain.Ventas.Mappers;
-using CorePuntoVenta.Domain.Ventas.Models;
-using iText.Kernel.Exceptions;
+﻿using CorePuntoVenta.Domain.Ventas.Mappers;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Ventas.Actions
 {

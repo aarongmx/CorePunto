@@ -314,6 +314,41 @@ namespace CorePuntoVenta.Migrations
                     b.ToTable("items_caja", (string)null);
                 });
 
+            modelBuilder.Entity("CorePuntoVenta.Domain.Clientes.Models.Abono", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha");
+
+                    b.Property<float>("Monto")
+                        .HasColumnType("real")
+                        .HasColumnName("monto");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("pk_abonos");
+
+                    b.ToTable("abonos", (string)null);
+                });
+
             modelBuilder.Entity("CorePuntoVenta.Domain.Clientes.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
@@ -370,6 +405,48 @@ namespace CorePuntoVenta.Migrations
                             RazonSocial = "AARON",
                             Rfc = "GOMA971007BD8"
                         });
+                });
+
+            modelBuilder.Entity("CorePuntoVenta.Domain.Clientes.Models.Cuenta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<float>("Adeudo")
+                        .HasColumnType("real")
+                        .HasColumnName("adeudo");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cliente_id");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<float>("Saldo")
+                        .HasColumnType("real")
+                        .HasColumnName("saldo");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id")
+                        .HasName("pk_cuentas");
+
+                    b.HasIndex("ClienteId")
+                        .HasDatabaseName("ix_cuentas_cliente_id");
+
+                    b.ToTable("cuentas", (string)null);
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Direcciones.Models.Direccion", b =>
@@ -534,6 +611,11 @@ namespace CorePuntoVenta.Migrations
                         new
                         {
                             Id = 2,
+                            Nombre = "PENDIENTE"
+                        },
+                        new
+                        {
+                            Id = 3,
                             Nombre = "PAGADA"
                         });
                 });
@@ -729,6 +811,23 @@ namespace CorePuntoVenta.Migrations
                         .HasName("pk_metodos_pago");
 
                     b.ToTable("metodos_pago", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "EFECTIVO"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "TARJETA DE CRÉDITO/DEBITO"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "CHEQUE"
+                        });
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Pagos.Models.Pago", b =>
@@ -1070,6 +1169,18 @@ namespace CorePuntoVenta.Migrations
                         .HasConstraintName("fk_clientes_direcciones_direccion_id");
 
                     b.Navigation("Direccion");
+                });
+
+            modelBuilder.Entity("CorePuntoVenta.Domain.Clientes.Models.Cuenta", b =>
+                {
+                    b.HasOne("CorePuntoVenta.Domain.Clientes.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_cuentas_clientes_cliente_id");
+
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Empleados.Models.Empleado", b =>

@@ -1,15 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
 using CorePuntoVenta.Domain.Support.Actions;
-using ESC_POS_USB_NET.Enums;
 using ESC_POS_USB_NET.Printer;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Cajas.Actions
 {

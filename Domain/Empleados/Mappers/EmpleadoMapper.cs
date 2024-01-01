@@ -1,11 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Empleados.Data;
 using CorePuntoVenta.Domain.Empleados.Models;
 using Riok.Mapperly.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Empleados.Mappers
 {

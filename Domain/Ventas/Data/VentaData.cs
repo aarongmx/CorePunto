@@ -1,14 +1,8 @@
 ﻿
 using CorePuntoVenta.Domain.Ordenes.Data;
 using CorePuntoVenta.Domain.Pagos.Data;
-using CorePuntoVenta.Domain.Pagos.Models;
 using CorePuntoVenta.Domain.Sucursales.Data;
 using CorePuntoVenta.Domain.Support.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Ventas.Data
 {

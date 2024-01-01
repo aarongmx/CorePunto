@@ -1,4 +1,3 @@
-C:\Users\aaron\source\repos\CorePuntoVenta\bin\Release\net7.0\CorePuntoVenta.dll.config
 C:\Users\aaron\source\repos\CorePuntoVenta\bin\Release\net7.0\CorePuntoVenta.deps.json
 C:\Users\aaron\source\repos\CorePuntoVenta\bin\Release\net7.0\CorePuntoVenta.runtimeconfig.json
 C:\Users\aaron\source\repos\CorePuntoVenta\bin\Release\net7.0\CorePuntoVenta.dll
@@ -13,3 +12,4 @@ C:\Users\aaron\source\repos\CorePuntoVenta\obj\Release\net7.0\refint\CorePuntoVe
 C:\Users\aaron\source\repos\CorePuntoVenta\obj\Release\net7.0\CorePuntoVenta.pdb
 C:\Users\aaron\source\repos\CorePuntoVenta\obj\Release\net7.0\CorePuntoVenta.genruntimeconfig.cache
 C:\Users\aaron\source\repos\CorePuntoVenta\obj\Release\net7.0\ref\CorePuntoVenta.dll
+C:\Users\aaron\source\repos\CorePuntoVenta\obj\Release\net7.0\CorePuntoVenta.sourcelink.json

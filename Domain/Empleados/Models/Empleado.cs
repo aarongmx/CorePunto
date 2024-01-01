@@ -1,27 +1,28 @@
 ﻿using CorePuntoVenta.Domain.Sucursales.Models;
 using CorePuntoVenta.Domain.Support.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Empleados.Models
 {
+    [Table("empleados")]
     public class Empleado : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
 
+        [Column("nombre")]
         public string Nombre { get; set; }
 
+        [Column("apellido_paterno")]
         public string ApellidoPaterno { get; set; }
 
+        [Column("apellido_materno")]
         public string? ApellidoMaterno { get; set; }
 
+        [Column("sucursal_id")]
         public int SucursalId { get; set; }
 
         public Sucursal? Sucursal {  get; set; }

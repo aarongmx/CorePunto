@@ -1,11 +1,7 @@
 ﻿using ESC_POS_USB_NET.Printer;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Support.Actions
 {
@@ -15,7 +11,7 @@ namespace CorePuntoVenta.Domain.Support.Actions
         {
             EncodingProvider ppp = CodePagesEncodingProvider.Instance;
             Encoding.RegisterProvider(ppp);
-            Printer printer = new Printer(impresora, "UTF-16");
+            Printer printer = new Printer(impresora, "UTF-8");
 
             Assembly assembly = Assembly.GetExecutingAssembly();
             Stream? logo = assembly.GetManifestResourceStream("CorePuntoVenta.logo.png");

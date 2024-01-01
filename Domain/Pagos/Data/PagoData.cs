@@ -1,15 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
-using CorePuntoVenta.Domain.Cajas.Models;
 using CorePuntoVenta.Domain.Clientes.Data;
-using CorePuntoVenta.Domain.Clientes.Models;
-using CorePuntoVenta.Domain.Pagos.Models;
 using CorePuntoVenta.Domain.Ventas.Data;
-using CorePuntoVenta.Domain.Ventas.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CorePuntoVenta.Domain.Pagos.Data
 {
