@@ -6,29 +6,29 @@ namespace CorePuntoVenta.Domain.Helpers
     {
         private Session() { }
 
-        private static Session _instance;
+        private static Session? _instance;
 
         private static readonly object _lock = new object();
-        
+
         public UsuarioData Value { get; private set; }
         public bool LoggedIn { get; private set; } = false;
 
         public static Session GetInstance(UsuarioData usuarioData)
         {
-            if(_instance == null)
+            if (_instance is not null)
             {
-                lock(_lock)
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new Session
-                        {
-                            Value = usuarioData,
-                            LoggedIn = true
-                        };
-                    }
-                }
+                return _instance;
             }
+
+            lock (_lock)
+            {
+                _instance ??= new Session
+                {
+                    Value = usuarioData,
+                    LoggedIn = true
+                };
+            }
+
             return _instance;
         }
     }
