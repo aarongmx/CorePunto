@@ -15,7 +15,7 @@ namespace CorePuntoVenta.Domain.Productos.Actions
         public List<ProductoData> Execute()
         {
             ProductoMapper mapper = new();
-            return _context.Productos.Include(p => p.Categoria).Select(producto => mapper.ToDto(producto)).AsSplitQuery().ToList();
+            return [.. _context.Productos.Include(p => p.Categoria).Select(producto => mapper.ToDto(producto)).AsSplitQuery()];
         }
 
     }

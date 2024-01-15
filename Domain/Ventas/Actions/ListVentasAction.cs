@@ -13,13 +13,13 @@ namespace CorePuntoVenta.Domain.Ventas.Actions
         {
             return
             [
-                .. _context.Ventas
-                                .Include(v => v.Orden)
-                                .ThenInclude(o => o.Cliente)
-                                .Include(v => v.Orden)
-                                .ThenInclude(o => o.Empleado)
-                                .Select(venta => _mapper.ToDto(venta))
-,
+                .. _context
+                    .Ventas
+                    .Include(v => v.Orden)
+                    .ThenInclude(o => o.Cliente)
+                    .Include(v => v.Orden)
+                    .ThenInclude(o => o.Empleado)
+                    .Select(venta => _mapper.ToDto(venta))
             ];
         }
     }

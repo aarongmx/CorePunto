@@ -15,7 +15,7 @@ namespace CorePuntoVenta.Domain.Ordenes.Data
 
         public double Total { get; set; }
 
-        public ICollection<ItemOrdenData>? ItemsOrden { get; set; } = new List<ItemOrdenData>();
+        public List<ItemOrdenData>? ItemsOrden { get; set; }
 
         public int ClienteId { get; set; }
 

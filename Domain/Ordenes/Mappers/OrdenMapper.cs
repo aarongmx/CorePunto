@@ -4,7 +4,7 @@ using Riok.Mapperly.Abstractions;
 
 namespace CorePuntoVenta.Domain.Ordenes.Mappers
 {
-    [Mapper]
+    [Mapper(UseReferenceHandling = true)]
     public partial class OrdenMapper
     {
         public partial OrdenData ToDto(Orden orden);

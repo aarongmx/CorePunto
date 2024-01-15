@@ -4,16 +4,10 @@ using CorePuntoVenta.Domain.Pagos.Models;
 
 namespace CorePuntoVenta.Domain.Pagos.Actions
 {
-    public class StorePagoAction
+    public class StorePagoAction(ApplicationDbContext context)
     {
-        private ApplicationDbContext _context;
-        private PagoMapper _mapper;
-
-        public StorePagoAction(ApplicationDbContext context)
-        {
-            _context = context;
-            _mapper = new PagoMapper();
-        }
+        private readonly ApplicationDbContext _context = context;
+        private readonly PagoMapper _mapper = new();
 
         public Pago? Execute(PagoData pagoData)
         {

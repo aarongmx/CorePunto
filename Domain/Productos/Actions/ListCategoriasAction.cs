@@ -14,12 +14,17 @@ namespace CorePuntoVenta.Domain.Productos.Actions
         public List<CategoriaData> Execute()
         {
             using ApplicationDbContext context = new();
-            return context.Categorias
-                .Select(categoria => new CategoriaData() { 
-                    Id = categoria.Id, 
+            return
+            [
+                .. context
+                .Categorias
+                .Select(categoria => new CategoriaData()
+                {
+                    Id = categoria.Id,
                     Nombre = categoria.Nombre,
                 })
-                .ToList();
+,
+            ];
         }
     }
 }

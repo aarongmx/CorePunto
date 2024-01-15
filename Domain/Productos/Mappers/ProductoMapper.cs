@@ -4,7 +4,7 @@ using Riok.Mapperly.Abstractions;
 
 namespace CorePuntoVenta.Domain.Productos.Mappers
 {
-    [Mapper]
+    [Mapper(UseReferenceHandling = true)]
     public partial class ProductoMapper
     {
         public partial Producto ToEntity(ProductoData productoData);

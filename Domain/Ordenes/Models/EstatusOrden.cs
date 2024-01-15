@@ -12,7 +12,9 @@ namespace CorePuntoVenta.Domain.Ordenes.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("orden")]
+        [Column("nombre")]
         public string Nombre { get; set; }
+
+        public Orden Orden { get; set; } = null!;
     }
 }

@@ -28,7 +28,7 @@ namespace CorePuntoVenta.Domain.Ordenes.Models
         public Producto? Producto { get; set; } = null!;
 
         [Column("orden_id")]
-        public int OrdenId { get; set; }
+        public int? OrdenId { get; set; }
         
         public Orden? Orden { get; set; } = null!;
     }
