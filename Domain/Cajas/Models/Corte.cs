@@ -1,4 +1,5 @@
-﻿using CorePuntoVenta.Domain.Support.Models;
+﻿using CorePuntoVenta.Domain.Empleados.Models;
+using CorePuntoVenta.Domain.Support.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,5 +29,10 @@ namespace CorePuntoVenta.Domain.Cajas.Models
         public int CajaId { get; set; }
 
         public Caja? Caja { get; set; }
+
+        [Column("empleado_id")]
+        public int EmpleadoId { get; set; }
+
+        public Empleado? Empleado { get; set; }
     }
 }

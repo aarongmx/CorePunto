@@ -5,15 +5,14 @@ namespace CorePuntoVenta.Domain.Cajas.Actions
 {
     public class BuscarOrdenesPendientesAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context = context;
         private readonly OrdenMapper _mapper = new();
 
         public List<OrdenData> Execute(string search = "")
         {
             return [
-                .._context.Ordenes
+                ..context.Ordenes
                 .Where(o => o.EstatusOrdenId == 1)
-                .Where(o => o.Referencia.Contains(search))
+                //.Where(o => o.Referencia.Contains(search))
                 .Select(o => _mapper.ToDto(o))
             ];
         }

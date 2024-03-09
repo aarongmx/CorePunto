@@ -1,7 +1,8 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Models;
 using CorePuntoVenta.Domain.Clientes.Models;
+using CorePuntoVenta.Domain.Empleados.Models;
+using CorePuntoVenta.Domain.Ordenes.Models;
 using CorePuntoVenta.Domain.Support.Models;
-using CorePuntoVenta.Domain.Ventas.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -34,14 +35,22 @@ namespace CorePuntoVenta.Domain.Pagos.Models
         
         public MetodoPago? MetodoPago { get; set; }
 
-        [Column("venta_id")]
-        public int VentaId { get; set; }
+        [Column("referencia")]
+        public string? Referencia { get; set; }
+
+        [Column("orden_id")]
+        public int OrdenId{ get; set; }
         
-        public Venta? Venta { get; set; }
+        public Orden? Orden{ get; set; }
 
         [Column("caja_id")]
         public int CajaId { get; set; }
 
         public Caja? Caja { get; set; }
+
+        [Column("empleado_id")]
+        public int EmpleadoId { get; set; }
+
+        public Empleado? Empleado { get; set; }
     }
 }

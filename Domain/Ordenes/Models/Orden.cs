@@ -24,6 +24,12 @@ namespace CorePuntoVenta.Domain.Ordenes.Models
         [Column("total")]
         public double Total { get; set; }
 
+        [Column("subtotal")]
+        public double Subtotal{ get; set; }
+
+        [Column("impuestos")]
+        public double Impuestos{ get; set; }
+
         public ICollection<ItemOrden> ItemsOrden { get; set; } = new List<ItemOrden>();
 
         [Column("cliente_id")]

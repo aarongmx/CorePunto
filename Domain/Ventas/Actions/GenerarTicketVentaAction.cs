@@ -15,7 +15,7 @@ namespace CorePuntoVenta.Domain.Ventas.Actions
         {
             Printer ticket = _ticket.Execute(impresora);
 
-            string efectivo = $"EFECTIVO: {pagoData?.Venta?.Total}";
+            string efectivo = $"EFECTIVO: {pagoData?.MontoRecibido}";
             string cambio = $"CAMBIO: {pagoData?.Cambio}";
 
             ticket.Append(efectivo);

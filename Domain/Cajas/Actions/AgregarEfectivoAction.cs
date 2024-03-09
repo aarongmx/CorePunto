@@ -1,59 +1,27 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
 using CorePuntoVenta.Domain.Cajas.Enums;
+using CorePuntoVenta.Domain.Cajas.Mappers;
 using CorePuntoVenta.Domain.Cajas.Models;
 
 namespace CorePuntoVenta.Domain.Cajas.Actions
 {
-    public class AgregarEfectivoAction
+    public class AgregarEfectivoAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
+        public ItemCajaMapper _mapper = new();
 
-        public AgregarEfectivoAction(ApplicationDbContext context)
+        public ItemCaja? Execute(Caja caja, ItemCajaData itemCajaData)
         {
-            _context = context;
-        }
-
-        public ItemCaja? Execute(int cajaId, ItemCajaData itemCajaData)
-        {
-            using var transaction = _context.Database.BeginTransaction();
+            using var transaction = context.Database.BeginTransaction();
             try
             {
                 ItemCaja? itemCaja = null;
-                var caja = _context.Cajas.Find(cajaId);
-                if (caja != null)
-                {
-                    double monto = 0;
-                    if (itemCajaData.Movimiento.Equals(MovimientoCaja.INGRESO))
-                    {
-                        caja.EfectivoDisponible += itemCajaData.Monto;
-                        monto = itemCajaData.Monto;
-                    }
+                caja.EfectivoDisponible += itemCajaData.Monto;
 
-                    if (itemCajaData.Movimiento.Equals(MovimientoCaja.EGRESO))
-                    {
-                        if(caja.EfectivoDisponible <= 0)
-                        {
-                            throw new Exception("No hay efectivo suficiente para");
-                        }
+                itemCaja = _mapper.ToEntity(itemCajaData);
 
-                        caja.EfectivoDisponible -= itemCajaData.Monto;
-                        monto = itemCajaData.Monto * -1;
-                    }
-
-                    itemCaja = new()
-                    {
-                        Movimiento = itemCajaData.Movimiento,
-                        Monto = monto,
-                        Motivo = itemCajaData.Motivo,
-                        EmpleadoId = itemCajaData.EmpleadoId,
-                        CajaId = cajaId,
-                        CreatedAt = DateTime.UtcNow,
-                        UpdatedAt = DateTime.UtcNow,
-                    };
-                    _context.Update(caja);
-                    _context.Add(itemCaja);
-                    _context.SaveChanges();
-                }
+                context.Update(caja);
+                context.Add(itemCaja);
+                context.SaveChanges();
                 transaction.Commit();
 
                 return itemCaja;

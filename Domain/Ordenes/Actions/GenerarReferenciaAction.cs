@@ -3,19 +3,12 @@ using CorePuntoVenta.Domain.Ordenes.Models;
 
 namespace CorePuntoVenta.Domain.Ordenes.Actions
 {
-    public class GenerarReferenciaAction
+    public class GenerarReferenciaAction(ApplicationDbContext context)
     {
-        private ApplicationDbContext _context;
-
-        public GenerarReferenciaAction(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
         public ReferenciaOrden Execute()
         {
             var mapper = new ReferenciaOrdenMapper();
-            var referencia = _context.RefereciasOrden.FirstOrDefault();
+            var referencia = context.RefereciasOrden.FirstOrDefault();
 
             if (referencia is null)
             {
@@ -25,8 +18,8 @@ namespace CorePuntoVenta.Domain.Ordenes.Actions
                     Prefijo = "ORD",
                 };
 
-                _context.Add(referencia);
-                _context.SaveChanges();
+                context.Add(referencia);
+                context.SaveChanges();
             }
 
             return referencia;

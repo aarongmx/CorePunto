@@ -17,7 +17,7 @@ namespace CorePuntoVenta.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -48,10 +48,9 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_roles");
+                    b.HasKey("Id");
 
-                    b.ToTable("roles", (string)null);
+                    b.ToTable("roles");
 
                     b.HasData(
                         new
@@ -106,16 +105,13 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("text")
                         .HasColumnName("token");
 
-                    b.HasKey("Id")
-                        .HasName("pk_usuarios");
+                    b.HasKey("Id");
 
-                    b.HasIndex("RolId")
-                        .HasDatabaseName("ix_usuarios_rol_id");
+                    b.HasIndex("RolId");
 
-                    b.HasIndex("SucursalId")
-                        .HasDatabaseName("ix_usuarios_sucursal_id");
+                    b.HasIndex("SucursalId");
 
-                    b.ToTable("usuarios", (string)null);
+                    b.ToTable("usuarios");
 
                     b.HasData(
                         new
@@ -171,7 +167,7 @@ namespace CorePuntoVenta.Migrations
                     b.Property<string>("Hostname")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("hostname");
+                        .HasColumnName("hosname");
 
                     b.Property<string>("Ip")
                         .IsRequired()
@@ -191,13 +187,11 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_cajas");
+                    b.HasKey("Id");
 
-                    b.HasIndex("SucursalId")
-                        .HasDatabaseName("ix_cajas_sucursal_id");
+                    b.HasIndex("SucursalId");
 
-                    b.ToTable("cajas", (string)null);
+                    b.ToTable("cajas");
 
                     b.HasData(
                         new
@@ -232,6 +226,10 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("deleted_at");
 
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("empleado_id");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("fecha");
@@ -252,13 +250,13 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_cortes");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CajaId")
-                        .HasDatabaseName("ix_cortes_caja_id");
+                    b.HasIndex("CajaId");
 
-                    b.ToTable("cortes", (string)null);
+                    b.HasIndex("EmpleadoId");
+
+                    b.ToTable("cortes");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Cajas.Models.ItemCaja", b =>
@@ -295,23 +293,43 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnName("motivo");
 
                     b.Property<int>("Movimiento")
-                        .HasColumnType("integer")
-                        .HasColumnName("movimiento");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_items_caja");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CajaId")
-                        .HasDatabaseName("ix_items_caja_caja_id");
+                    b.HasIndex("CajaId");
 
-                    b.HasIndex("EmpleadoId")
-                        .HasDatabaseName("ix_items_caja_empleado_id");
+                    b.HasIndex("EmpleadoId");
 
-                    b.ToTable("items_caja", (string)null);
+                    b.ToTable("items_caja");
+                });
+
+            modelBuilder.Entity("CorePuntoVenta.Domain.Camionetas.Models.Camioneta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("nombre");
+
+                    b.Property<string>("Placas")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("placas");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("camionetas");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Clientes.Models.Abono", b =>
@@ -343,10 +361,9 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_abonos");
+                    b.HasKey("Id");
 
-                    b.ToTable("abonos", (string)null);
+                    b.ToTable("abonos");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Clientes.Models.Cliente", b =>
@@ -388,13 +405,11 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_clientes");
+                    b.HasKey("Id");
 
-                    b.HasIndex("DireccionId")
-                        .HasDatabaseName("ix_clientes_direccion_id");
+                    b.HasIndex("DireccionId");
 
-                    b.ToTable("clientes", (string)null);
+                    b.ToTable("clientes");
 
                     b.HasData(
                         new
@@ -440,13 +455,11 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_cuentas");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ClienteId")
-                        .HasDatabaseName("ix_cuentas_cliente_id");
+                    b.HasIndex("ClienteId");
 
-                    b.ToTable("cuentas", (string)null);
+                    b.ToTable("cuentas");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Direcciones.Models.Direccion", b =>
@@ -496,10 +509,9 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_direcciones");
+                    b.HasKey("Id");
 
-                    b.ToTable("direcciones", (string)null);
+                    b.ToTable("direcciones");
 
                     b.HasData(
                         new
@@ -552,13 +564,11 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_empleados");
+                    b.HasKey("Id");
 
-                    b.HasIndex("SucursalId")
-                        .HasDatabaseName("ix_empleados_sucursal_id");
+                    b.HasIndex("SucursalId");
 
-                    b.ToTable("empleados", (string)null);
+                    b.ToTable("empleados");
 
                     b.HasData(
                         new
@@ -597,10 +607,9 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_estatus_orden");
+                    b.HasKey("Id");
 
-                    b.ToTable("estatus_orden", (string)null);
+                    b.ToTable("estatus_orden");
 
                     b.HasData(
                         new
@@ -641,7 +650,7 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("kilos");
 
-                    b.Property<int>("OrdenId")
+                    b.Property<int?>("OrdenId")
                         .HasColumnType("integer")
                         .HasColumnName("orden_id");
 
@@ -661,16 +670,13 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_items_orden");
+                    b.HasKey("Id");
 
-                    b.HasIndex("OrdenId")
-                        .HasDatabaseName("ix_items_orden_orden_id");
+                    b.HasIndex("OrdenId");
 
-                    b.HasIndex("ProductoId")
-                        .HasDatabaseName("ix_items_orden_producto_id");
+                    b.HasIndex("ProductoId");
 
-                    b.ToTable("items_orden", (string)null);
+                    b.ToTable("items_orden");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Ordenes.Models.Orden", b =>
@@ -710,6 +716,10 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("fecha");
 
+                    b.Property<double>("Impuestos")
+                        .HasColumnType("double precision")
+                        .HasColumnName("impuestos");
+
                     b.Property<double>("Kilos")
                         .HasColumnType("double precision")
                         .HasColumnName("kilos");
@@ -719,6 +729,10 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("text")
                         .HasColumnName("referencia");
 
+                    b.Property<double>("Subtotal")
+                        .HasColumnType("double precision")
+                        .HasColumnName("subtotal");
+
                     b.Property<double>("Total")
                         .HasColumnType("double precision")
                         .HasColumnName("total");
@@ -727,22 +741,18 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_ordenes");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CajaId")
-                        .HasDatabaseName("ix_ordenes_caja_id");
+                    b.HasIndex("CajaId");
 
-                    b.HasIndex("ClienteId")
-                        .HasDatabaseName("ix_ordenes_cliente_id");
+                    b.HasIndex("ClienteId");
 
-                    b.HasIndex("EmpleadoId")
-                        .HasDatabaseName("ix_ordenes_empleado_id");
+                    b.HasIndex("EmpleadoId");
 
                     b.HasIndex("EstatusOrdenId")
-                        .HasDatabaseName("ix_ordenes_estatus_orden_id");
+                        .IsUnique();
 
-                    b.ToTable("ordenes", (string)null);
+                    b.ToTable("ordenes");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Ordenes.Models.ReferenciaOrden", b =>
@@ -775,10 +785,9 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_referecias_orden");
+                    b.HasKey("Id");
 
-                    b.ToTable("referecias_orden", (string)null);
+                    b.ToTable("referencias_orden");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Pagos.Models.MetodoPago", b =>
@@ -807,10 +816,9 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_metodos_pago");
+                    b.HasKey("Id");
 
-                    b.ToTable("metodos_pago", (string)null);
+                    b.ToTable("metodos_pago");
 
                     b.HasData(
                         new
@@ -859,6 +867,10 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("deleted_at");
 
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("empleado_id");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("fecha");
@@ -871,30 +883,31 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("monto_recibido");
 
+                    b.Property<int>("OrdenId")
+                        .HasColumnType("integer")
+                        .HasColumnName("orden_id");
+
+                    b.Property<string>("Referencia")
+                        .HasColumnType("text")
+                        .HasColumnName("referencia");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.Property<int>("VentaId")
-                        .HasColumnType("integer")
-                        .HasColumnName("venta_id");
+                    b.HasKey("Id");
 
-                    b.HasKey("Id")
-                        .HasName("pk_pagos");
+                    b.HasIndex("CajaId");
 
-                    b.HasIndex("CajaId")
-                        .HasDatabaseName("ix_pagos_caja_id");
+                    b.HasIndex("ClienteId");
 
-                    b.HasIndex("ClienteId")
-                        .HasDatabaseName("ix_pagos_cliente_id");
+                    b.HasIndex("EmpleadoId");
 
-                    b.HasIndex("MetodoPagoId")
-                        .HasDatabaseName("ix_pagos_metodo_pago_id");
+                    b.HasIndex("MetodoPagoId");
 
-                    b.HasIndex("VentaId")
-                        .HasDatabaseName("ix_pagos_venta_id");
+                    b.HasIndex("OrdenId");
 
-                    b.ToTable("pagos", (string)null);
+                    b.ToTable("pagos");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Productos.Models.Categoria", b =>
@@ -923,10 +936,9 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_categorias");
+                    b.HasKey("Id");
 
-                    b.ToTable("categorias", (string)null);
+                    b.ToTable("categorias");
 
                     b.HasData(
                         new
@@ -975,13 +987,11 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_productos");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CategoriaId")
-                        .HasDatabaseName("ix_productos_categoria_id");
+                    b.HasIndex("CategoriaId");
 
-                    b.ToTable("productos", (string)null);
+                    b.ToTable("productos");
 
                     b.HasData(
                         new
@@ -1023,13 +1033,11 @@ namespace CorePuntoVenta.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("Id")
-                        .HasName("pk_sucursales");
+                    b.HasKey("Id");
 
-                    b.HasIndex("DireccionId")
-                        .HasDatabaseName("ix_sucursales_direccion_id");
+                    b.HasIndex("DireccionId");
 
-                    b.ToTable("sucursales", (string)null);
+                    b.ToTable("sucursales");
 
                     b.HasData(
                         new
@@ -1040,74 +1048,19 @@ namespace CorePuntoVenta.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CorePuntoVenta.Domain.Ventas.Models.Venta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("deleted_at");
-
-                    b.Property<double>("Iva")
-                        .HasColumnType("double precision")
-                        .HasColumnName("iva");
-
-                    b.Property<int>("OrdenId")
-                        .HasColumnType("integer")
-                        .HasColumnName("orden_id");
-
-                    b.Property<double>("Subtotal")
-                        .HasColumnType("double precision")
-                        .HasColumnName("subtotal");
-
-                    b.Property<int>("SucursalId")
-                        .HasColumnType("integer")
-                        .HasColumnName("sucursal_id");
-
-                    b.Property<double>("Total")
-                        .HasColumnType("double precision")
-                        .HasColumnName("total");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id")
-                        .HasName("pk_ventas");
-
-                    b.HasIndex("OrdenId")
-                        .HasDatabaseName("ix_ventas_orden_id");
-
-                    b.HasIndex("SucursalId")
-                        .HasDatabaseName("ix_ventas_sucursal_id");
-
-                    b.ToTable("ventas", (string)null);
-                });
-
             modelBuilder.Entity("CorePuntoVenta.Domain.Administracion.Models.Usuario", b =>
                 {
                     b.HasOne("CorePuntoVenta.Domain.Administracion.Models.Rol", "Rol")
                         .WithMany()
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_usuarios_roles_rol_id");
+                        .IsRequired();
 
                     b.HasOne("CorePuntoVenta.Domain.Sucursales.Models.Sucursal", "Sucursal")
                         .WithMany()
                         .HasForeignKey("SucursalId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_usuarios_sucursales_sucursal_id");
+                        .IsRequired();
 
                     b.Navigation("Rol");
 
@@ -1120,8 +1073,7 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("SucursalId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_cajas_sucursales_sucursal_id");
+                        .IsRequired();
 
                     b.Navigation("Sucursal");
                 });
@@ -1132,10 +1084,17 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("CajaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_cortes_cajas_caja_id");
+                        .IsRequired();
+
+                    b.HasOne("CorePuntoVenta.Domain.Empleados.Models.Empleado", "Empleado")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Caja");
+
+                    b.Navigation("Empleado");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Cajas.Models.ItemCaja", b =>
@@ -1144,15 +1103,13 @@ namespace CorePuntoVenta.Migrations
                         .WithMany("Items")
                         .HasForeignKey("CajaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_items_caja_cajas_caja_id");
+                        .IsRequired();
 
                     b.HasOne("CorePuntoVenta.Domain.Empleados.Models.Empleado", "Empleado")
                         .WithMany()
                         .HasForeignKey("EmpleadoId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_items_caja_empleados_empleado_id");
+                        .IsRequired();
 
                     b.Navigation("Caja");
 
@@ -1165,8 +1122,7 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("DireccionId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_clientes_direcciones_direccion_id");
+                        .IsRequired();
 
                     b.Navigation("Direccion");
                 });
@@ -1177,8 +1133,7 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_cuentas_clientes_cliente_id");
+                        .IsRequired();
 
                     b.Navigation("Cliente");
                 });
@@ -1189,8 +1144,7 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("SucursalId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_empleados_sucursales_sucursal_id");
+                        .IsRequired();
 
                     b.Navigation("Sucursal");
                 });
@@ -1199,17 +1153,13 @@ namespace CorePuntoVenta.Migrations
                 {
                     b.HasOne("CorePuntoVenta.Domain.Ordenes.Models.Orden", "Orden")
                         .WithMany("ItemsOrden")
-                        .HasForeignKey("OrdenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_items_orden_ordenes_orden_id");
+                        .HasForeignKey("OrdenId");
 
                     b.HasOne("CorePuntoVenta.Domain.Productos.Models.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_items_orden_productos_producto_id");
+                        .IsRequired();
 
                     b.Navigation("Orden");
 
@@ -1222,29 +1172,25 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("CajaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_ordenes_cajas_caja_id");
+                        .IsRequired();
 
                     b.HasOne("CorePuntoVenta.Domain.Clientes.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_ordenes_clientes_cliente_id");
+                        .IsRequired();
 
                     b.HasOne("CorePuntoVenta.Domain.Empleados.Models.Empleado", "Empleado")
                         .WithMany()
                         .HasForeignKey("EmpleadoId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_ordenes_empleados_empleado_id");
+                        .IsRequired();
 
                     b.HasOne("CorePuntoVenta.Domain.Ordenes.Models.EstatusOrden", "EstatusOrden")
-                        .WithMany()
-                        .HasForeignKey("EstatusOrdenId")
+                        .WithOne("Orden")
+                        .HasForeignKey("CorePuntoVenta.Domain.Ordenes.Models.Orden", "EstatusOrdenId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_ordenes_estatus_orden_estatus_orden_id");
+                        .IsRequired();
 
                     b.Navigation("Caja");
 
@@ -1261,37 +1207,41 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("CajaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_pagos_cajas_caja_id");
+                        .IsRequired();
 
                     b.HasOne("CorePuntoVenta.Domain.Clientes.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_pagos_clientes_cliente_id");
+                        .IsRequired();
+
+                    b.HasOne("CorePuntoVenta.Domain.Empleados.Models.Empleado", "Empleado")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CorePuntoVenta.Domain.Pagos.Models.MetodoPago", "MetodoPago")
                         .WithMany()
                         .HasForeignKey("MetodoPagoId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_pagos_metodos_pago_metodo_pago_id");
+                        .IsRequired();
 
-                    b.HasOne("CorePuntoVenta.Domain.Ventas.Models.Venta", "Venta")
-                        .WithMany("Pagos")
-                        .HasForeignKey("VentaId")
+                    b.HasOne("CorePuntoVenta.Domain.Ordenes.Models.Orden", "Orden")
+                        .WithMany()
+                        .HasForeignKey("OrdenId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_pagos_ventas_venta_id");
+                        .IsRequired();
 
                     b.Navigation("Caja");
 
                     b.Navigation("Cliente");
 
+                    b.Navigation("Empleado");
+
                     b.Navigation("MetodoPago");
 
-                    b.Navigation("Venta");
+                    b.Navigation("Orden");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Productos.Models.Producto", b =>
@@ -1300,8 +1250,7 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_productos_categorias_categoria_id");
+                        .IsRequired();
 
                     b.Navigation("Categoria");
                 });
@@ -1312,31 +1261,9 @@ namespace CorePuntoVenta.Migrations
                         .WithMany()
                         .HasForeignKey("DireccionId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_sucursales_direcciones_direccion_id");
+                        .IsRequired();
 
                     b.Navigation("Direccion");
-                });
-
-            modelBuilder.Entity("CorePuntoVenta.Domain.Ventas.Models.Venta", b =>
-                {
-                    b.HasOne("CorePuntoVenta.Domain.Ordenes.Models.Orden", "Orden")
-                        .WithMany()
-                        .HasForeignKey("OrdenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_ventas_ordenes_orden_id");
-
-                    b.HasOne("CorePuntoVenta.Domain.Sucursales.Models.Sucursal", "Sucursal")
-                        .WithMany()
-                        .HasForeignKey("SucursalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_ventas_sucursales_sucursal_id");
-
-                    b.Navigation("Orden");
-
-                    b.Navigation("Sucursal");
                 });
 
             modelBuilder.Entity("CorePuntoVenta.Domain.Cajas.Models.Caja", b =>
@@ -1344,14 +1271,15 @@ namespace CorePuntoVenta.Migrations
                     b.Navigation("Items");
                 });
 
+            modelBuilder.Entity("CorePuntoVenta.Domain.Ordenes.Models.EstatusOrden", b =>
+                {
+                    b.Navigation("Orden")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CorePuntoVenta.Domain.Ordenes.Models.Orden", b =>
                 {
                     b.Navigation("ItemsOrden");
-                });
-
-            modelBuilder.Entity("CorePuntoVenta.Domain.Ventas.Models.Venta", b =>
-                {
-                    b.Navigation("Pagos");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,20 +1,15 @@
 ﻿using CorePuntoVenta.Domain.Sucursales.Data;
+using CorePuntoVenta.Domain.Sucursales.Mappers;
 
 namespace CorePuntoVenta.Domain.Sucursales.Actions
 {
-    public class ListSucursalesAction
+    public class ListSucursalesAction(ApplicationDbContext context)
     {
+        private readonly SucursalMapper mapper = new();
+
         public List<SucursalData> Execute()
         {
-            using (ApplicationDbContext context = new())
-            {
-                return context.Sucursales.Select(sucursal => new SucursalData
-                {
-                    Id = sucursal.Id,
-                    Nombre = sucursal.Nombre,
-                    DireccionId = sucursal.DireccionId,
-                }).ToList();
-            }
+            return [.. context.Sucursales.Select(sucursal => mapper.ToDto(sucursal))];
         }
     }
 }

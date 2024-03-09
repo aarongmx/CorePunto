@@ -1,5 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Administracion.Models;
 using CorePuntoVenta.Domain.Cajas.Models;
+using CorePuntoVenta.Domain.Camionetas.Models;
 using CorePuntoVenta.Domain.Clientes.Models;
 using CorePuntoVenta.Domain.Direcciones.Models;
 using CorePuntoVenta.Domain.Empleados.Models;
@@ -8,7 +9,6 @@ using CorePuntoVenta.Domain.Pagos.Models;
 using CorePuntoVenta.Domain.Productos.Models;
 using CorePuntoVenta.Domain.Sucursales.Models;
 using CorePuntoVenta.Domain.Support.Models;
-using CorePuntoVenta.Domain.Ventas.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Npgsql;
@@ -35,8 +35,8 @@ namespace CorePuntoVenta
         public virtual DbSet<Producto> Productos { get; set; }
         public virtual DbSet<Sucursal> Sucursales { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
-        public virtual DbSet<Venta> Ventas { get; set; }
         public virtual DbSet<Direccion> Direcciones { get; set; }
+        public virtual DbSet<Camioneta> Camionetas { get; set; }
 
         public ApplicationDbContext() : base()
         {
@@ -46,7 +46,7 @@ namespace CorePuntoVenta
         {
         }
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connection = "Server=127.0.0.1;Port=5432;User ID=db_user;Password=s3cret;Database=punto";
             NpgsqlDataSourceBuilder dataSourceBuilder = new(connection);
@@ -60,7 +60,7 @@ namespace CorePuntoVenta
                 .LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-        }*/
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

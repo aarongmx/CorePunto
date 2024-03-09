@@ -6,34 +6,32 @@ namespace CorePuntoVenta.Domain.Ordenes.Actions
 {
     public class StoreOrdenAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context = context;
-
         public Orden? Execute(OrdenData data)
         {
-            using var transaction = _context.Database.BeginTransaction();
+            using var transaction = context.Database.BeginTransaction();
             var ordenMapper = new OrdenMapper();
             var itemOrdenMapper = new ItemOrdenMapper();
             var referenciaOrdenMapper = new ReferenciaOrdenMapper();
 
             try
             {
-                var referencia = new GenerarReferenciaAction(_context).Execute();
+                var referencia = new GenerarReferenciaAction(context).Execute();
                 var folio = referencia.Folio += 1;
                 data.Referencia = "ORD-" + folio;
                 data.CajaId = 1;
 
                 var orden = ordenMapper.ToEntity(data);
 
-                if (data.ItemsOrden != null)
+                if (data.ItemsOrden is not null)
                 {
                     var items = data.ItemsOrden.Select(itemOrdenMapper.ToEntity).ToList();
 
                     orden.ItemsOrden = items;
                 }
 
-                _context.Update(referencia);
-                _context.Add(orden);
-                _context.SaveChanges();
+                context.Update(referencia);
+                context.Add(orden);
+                context.SaveChanges();
 
                 transaction.Commit();
                 return orden;

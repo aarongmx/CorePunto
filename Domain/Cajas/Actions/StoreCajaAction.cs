@@ -8,7 +8,6 @@ namespace CorePuntoVenta.Domain.Cajas.Actions
 {
     public class StoreCajaAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context = context;
         private readonly CajaMapper _mapper = new();
 
         public Caja? Execute(CajaData cajaData)
@@ -23,8 +22,8 @@ namespace CorePuntoVenta.Domain.Cajas.Actions
             cajaData.Hostname = hostName;
 
             Caja caja = _mapper.ToEntity(cajaData);
-            _context.Add(caja);
-            _context.SaveChanges();
+            context.Add(caja);
+            context.SaveChanges();
             return caja;
         }
     }

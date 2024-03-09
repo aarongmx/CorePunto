@@ -6,7 +6,7 @@ namespace CorePuntoVenta.Domain.Cajas.Actions
 {
     public class GenerarTicketEntradaSalidaEfectivoAction
     {
-        private GenerarCabeceraTicketAction _ticket;
+        private readonly GenerarCabeceraTicketAction _ticket;
 
         public GenerarTicketEntradaSalidaEfectivoAction()
         {

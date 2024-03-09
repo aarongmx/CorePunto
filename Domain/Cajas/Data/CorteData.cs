@@ -1,4 +1,6 @@
-﻿namespace CorePuntoVenta.Domain.Cajas.Data
+﻿using CorePuntoVenta.Domain.Empleados.Data;
+
+namespace CorePuntoVenta.Domain.Cajas.Data
 {
     public class CorteData
     {
@@ -14,5 +16,9 @@
         public int CajaId { get; set; }
 
         public CajaData? Caja { get; set; }
+
+        public int EmpleadoId { get; set; }
+
+        public EmpleadoData? Empleado { get; set; }
     }
 }

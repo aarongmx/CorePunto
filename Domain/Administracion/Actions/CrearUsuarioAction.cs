@@ -7,9 +7,8 @@ namespace CorePuntoVenta.Domain.Administracion.Actions
 {
     public class CrearUsuarioAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context = context;
         private readonly UsuarioMapper _mapper = new();
-        private const int WORK_FACTOR = 12;
+        private const int WORK_FACTOR = 14;
 
         public Usuario? Execute(UsuarioData usuarioData)
         {
@@ -22,8 +21,8 @@ namespace CorePuntoVenta.Domain.Administracion.Actions
             Usuario usuario = _mapper.ToEntity(usuarioData);
             usuario.Password = BCrypt.Net.BCrypt.HashPassword(usuarioData.Password, workFactor: WORK_FACTOR);
 
-            _context.Add(usuario);
-            _context.SaveChanges();
+            context.Add(usuario);
+            context.SaveChanges();
 
             return usuario;
         }

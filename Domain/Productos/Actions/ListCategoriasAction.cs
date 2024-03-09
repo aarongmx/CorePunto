@@ -2,18 +2,10 @@
 
 namespace CorePuntoVenta.Domain.Productos.Actions
 {
-    public class ListCategoriasAction
+    public class ListCategoriasAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-
-        public ListCategoriasAction(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
         public List<CategoriaData> Execute()
         {
-            using ApplicationDbContext context = new();
             return
             [
                 .. context

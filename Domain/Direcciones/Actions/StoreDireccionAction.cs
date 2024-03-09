@@ -3,13 +3,8 @@ using CorePuntoVenta.Domain.Direcciones.Models;
 
 namespace CorePuntoVenta.Domain.Direcciones.Actions
 {
-    public class StoreDireccionAction
+    public class StoreDireccionAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-        public StoreDireccionAction() { }
-        public StoreDireccionAction(ApplicationDbContext context) { _context = context; }
-
-
         public Direccion Execute(DireccionData direccionData)
         {
             Direccion direccion = new()
@@ -23,8 +18,8 @@ namespace CorePuntoVenta.Domain.Direcciones.Actions
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
             };
-            _context.Add(direccion);
-            _context.SaveChanges();
+            context.Add(direccion);
+            context.SaveChanges();
 
             return direccion;
         }

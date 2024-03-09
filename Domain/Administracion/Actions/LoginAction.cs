@@ -5,19 +5,12 @@ using CorePuntoVenta.Domain.Helpers;
 
 namespace CorePuntoVenta.Domain.Administracion.Actions
 {
-    public class LoginAction
+    public class LoginAction(ApplicationDbContext context)
     {
-        private ApplicationDbContext _context;
-
-        public LoginAction(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
         public Session? Execute(UsuarioData usuarioData)
         {
             Session? session = null;
-            Usuario usuario = _context.Usuarios
+            Usuario usuario = context.Usuarios
                 .Where(u => u.Correo.ToLower().Equals(usuarioData.Correo.ToLower()))
                 .Single();
             bool isVerify = BCrypt.Net.BCrypt.Verify(usuarioData.Password, usuario.Password);

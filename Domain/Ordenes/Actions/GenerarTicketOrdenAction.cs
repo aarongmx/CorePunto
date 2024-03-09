@@ -6,12 +6,9 @@ namespace CorePuntoVenta.Domain.Ordenes.Actions
 {
     public class GenerarTicketOrdenAction
     {
-        private GenerarCabeceraTicketAction _ticket;
+        private readonly GenerarCabeceraTicketAction _ticket;
 
-        public GenerarTicketOrdenAction()
-        {
-            _ticket = new GenerarCabeceraTicketAction();
-        }
+        public GenerarTicketOrdenAction() => _ticket = new GenerarCabeceraTicketAction();
 
         public void Execute(string impresora, OrdenData ordenData)
         {

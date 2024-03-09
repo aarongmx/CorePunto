@@ -1,38 +1,27 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
+using CorePuntoVenta.Domain.Cajas.Mappers;
 using CorePuntoVenta.Domain.Cajas.Models;
 
 namespace CorePuntoVenta.Domain.Cajas.Actions
 {
-    public class StoreCorteCajaAction
+    public class StoreCorteCajaAction(ApplicationDbContext context)
     {
-        private ApplicationDbContext _context;
+        private readonly CorteMapper _mapper = new();
 
-        public StoreCorteCajaAction(ApplicationDbContext context)
+        public void Execute(Caja caja, CorteData corteData)
         {
-            _context = context;
-        }
+            Corte corte = _mapper.ToEntity(corteData);
 
-        public void Execute(CorteData corteData)
-        {
-            Corte corte = new Corte()
+
+            if (caja is null)
             {
-                CajaId = corteData.CajaId,
-                MontoCorte = corteData.MontoCorte,
-                MontoEnCaja = corteData.MontoEnCaja,
-                MontoInicial = corteData.MontoInicial,
-                CreatedAt = DateTime.UtcNow,
-                Fecha = corteData.Fecha,
-            };
-
-            Caja? caja = _context.Cajas.SingleOrDefault(c => c.Id == corteData.CajaId);
-
-            if (caja != null)
-            {
-                caja.EfectivoDisponible = corteData.MontoEnCaja;
+                throw new Exception("Caja no disponible, intentelo más tarde!");
             }
 
-            _context.Add(corte);
-            _context.SaveChangesAsync();
+            corte.MontoCorte = caja.EfectivoDisponible;
+
+            context.Add(corte);
+            context.SaveChangesAsync();
         }
     }
 }

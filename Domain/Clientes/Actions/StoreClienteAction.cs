@@ -6,19 +6,14 @@ using CorePuntoVenta.Domain.Direcciones.Models;
 
 namespace CorePuntoVenta.Domain.Clientes.Actions
 {
-    public class StoreClienteAction
+    public class StoreClienteAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-
-        public StoreClienteAction() { }
-        public StoreClienteAction(ApplicationDbContext context) { _context = context; }
-
         public Cliente? Execute(ClienteData clienteData, DireccionData direccionData)
         {
-            using var transaction = _context.Database.BeginTransaction();
+            using var transaction = context.Database.BeginTransaction();
             try
             {
-                Direccion direccion = (new StoreDireccionAction(_context)).Execute(direccionData);
+                Direccion direccion = (new StoreDireccionAction(context)).Execute(direccionData);
 
                 Cliente cliente = new()
                 {
@@ -30,8 +25,8 @@ namespace CorePuntoVenta.Domain.Clientes.Actions
                     UpdatedAt = DateTime.UtcNow,
                 };
 
-                _context.Add(cliente);
-                _context.SaveChanges();
+                context.Add(cliente);
+                context.SaveChanges();
 
                 transaction.Commit();
 

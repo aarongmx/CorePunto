@@ -6,14 +6,13 @@ namespace CorePuntoVenta.Domain.Pagos.Actions
 {
     public class StorePagoAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context = context;
         private readonly PagoMapper _mapper = new();
 
         public Pago? Execute(PagoData pagoData)
         {
             Pago pago = _mapper.ToEntity(pagoData);
-            _context.Add(pago);
-            _context.SaveChanges();
+            context.Add(pago);
+            context.SaveChanges();
             return pago;
         }
     }

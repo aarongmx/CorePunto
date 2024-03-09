@@ -5,7 +5,6 @@ namespace CorePuntoVenta.Domain.Sucursales.Actions
 {
     public class StoreSucursalAction(ApplicationDbContext context)
     {
-        public ApplicationDbContext _context = context;
         public Sucursal? Execute(SucursalData sucursalData)
         {
             Sucursal sucursal = new()

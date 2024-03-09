@@ -12,12 +12,10 @@ namespace CorePuntoVenta.Domain.Ordenes.Actions
 {
     public class ListarAllOrdenesAction(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context = context;
-
         public List<Orden> Execute()
         {
             return [..
-                _context.Ordenes
+                context.Ordenes
                 .Include(o => o.EstatusOrden)
                 .Include(o => o.Cliente)
                 .Include(o => o.ItemsOrden)

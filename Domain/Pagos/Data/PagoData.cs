@@ -1,6 +1,6 @@
 ﻿using CorePuntoVenta.Domain.Cajas.Data;
 using CorePuntoVenta.Domain.Clientes.Data;
-using CorePuntoVenta.Domain.Ventas.Data;
+using CorePuntoVenta.Domain.Ordenes.Data;
 
 namespace CorePuntoVenta.Domain.Pagos.Data
 {
@@ -22,9 +22,11 @@ namespace CorePuntoVenta.Domain.Pagos.Data
 
         public MetodoPagoData? MetodoPago { get; set; }
 
-        public int VentaId { get; set; }
+        public string? Referencia { get; set; }
 
-        public VentaData? Venta { get; set; }
+        public int OrdenId{ get; set; }
+
+        public OrdenData? Orden{ get; set; }
 
         public int CajaId { get; set; }
 
